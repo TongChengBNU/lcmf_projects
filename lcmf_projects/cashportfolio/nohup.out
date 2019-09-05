@@ -1,0 +1,63 @@
+]0;IPython: chengtong/cashportfolioTraceback (most recent call last):
+  File "main.py", line 347, in <module>
+    cashportfolio(obj={})
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 722, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 697, in main
+    rv = self.invoke(ctx)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 1066, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 895, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 535, in invoke
+    return callback(*args, **kwargs)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/decorators.py", line 17, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "main.py", line 237, in crossData
+    codeSet = Code(date)
+  File "main.py", line 35, in Code
+    if series['S_INFO_SECTORENTRYDT'] <= date:
+  File "pandas/_libs/tslibs/timestamps.pyx", line 161, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
+TypeError: Cannot compare type 'Timestamp' with type 'str'
+
+If you suspect this is an IPython bug, please report it at:
+    https://github.com/ipython/ipython/issues
+or send an email to the mailing list at ipython-dev@python.org
+
+You can print a more detailed traceback right now with "%tb", or use "%debug"
+to interactively debug it.
+
+Extra-detailed tracebacks for bug-reporting purposes can be enabled via:
+    %config Application.verbose_crash=True
+
+]0;IPython: chengtong/cashportfolioTraceback (most recent call last):
+  File "main.py", line 348, in <module>
+    cashportfolio(obj={})
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 722, in __call__
+    return self.main(*args, **kwargs)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 697, in main
+    rv = self.invoke(ctx)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 1066, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 895, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/core.py", line 535, in invoke
+    return callback(*args, **kwargs)
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/click/decorators.py", line 17, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "main.py", line 276, in crossData
+    df_rank_month.F_PRT_THREE = df_month.F_PRT_CPVALUE / df_month.F_PRT_TOTALASSET * 100 + df_month.F_PRT_MTNVALUE / df_month.F_PRT_TOTALASSET * 100 + df_month.F_PRT_CORPBOND / df_month.F_PRT_TOTALASSET * 100
+  File "/home/chengtong/anaconda3/lib/python3.6/site-packages/pandas/core/generic.py", line 4372, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'DataFrame' object has no attribute 'F_PRT_MTNVALUE'
+
+If you suspect this is an IPython bug, please report it at:
+    https://github.com/ipython/ipython/issues
+or send an email to the mailing list at ipython-dev@python.org
+
+You can print a more detailed traceback right now with "%tb", or use "%debug"
+to interactively debug it.
+
+Extra-detailed tracebacks for bug-reporting purposes can be enabled via:
+    %config Application.verbose_crash=True
+
