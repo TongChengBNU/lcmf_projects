@@ -1,0 +1,118 @@
+
+python ./shell/roboadvisor.py  analysis --help 
+
+
+database URL: 
+https://hdb.mofanglicai.com.cn/tbl_structure.php?db=asset_allocation&table=fund_pool_info_pdate
+
+hpc
+
+database:
+asset_allocation
+
+指数净值  root Mofang123 hpc mofang ra_nav, ra_index, trade_date
+
+192.168.88.254
+
+债券 public h76zyeTfVqAehr5J wind wind cbondindexeodcnbd
+
+
+192.168.88.12
+
+
+To be continued:
+macroopinion 修正
+第一个刚刚开始，需要跟师兄讨论框架
+
+
+jupyter notebook: 192.168.88.254:8886
+
+
+
+
+
+strategical VS tactical
+long time VS short time
+strategy: a planned series of actions for achieving somethings
+tactic: a method that you use to achieve something
+
+在四种资产中，数据库中缺失 wind商品指数。
+四种资产混合配置后，与沪深300的指数进行比较，可比性如何？
+
+LLT 修正：
+1. 熟悉 python highcharts
+
+改用 statisticmodel 做线性回归
+查阅 Hurst指数 相关论文
+
+P.S. 补充回归的相关知识
+
+时间序列的自相关
+
+
+用对数收益率做，不要用一般收益率
+
+测用户打分和用户买入的相关性
+
+
+2019.7.5
+转为收益率序列，(df + 1).cumprod()再做累乘
+
+
+可优化变量：
+指数池的组合、指数移动平均alpha参数调整、调仓策略的调整
+
+2019.7.8
+OK 打出仓位信息
+学习 charts 包，并替换所有图像
+模型结果分析表
+OK 归一化处理
+
+代码调整至 “调仓函数调试”
+
+
+2019.7.9
+杂事：
+OK  删除不需要的软件
+修复CUDA并安装tensorflow
+
+
+2019.7.10
+关注2012-04-05 数据 大跌1%
+LLT 基本idea收到挑战
+
+数据选取：
+1. sql注入，但需要不断修正sql（字符串操作）；
+2. ORM，定义类，通过类创建表格，再通过类来访问数据库
+（相关包：sqlalchemy），但类的定义非常繁琐；
+3. 可以尝试一个sql读取一个表的表头，借此来生成sql
+
+TensorFlow GPU安装时，一定要查明 CUDA+cudnn+tensorflow 适配的组合版本
+因此建议直接安装 Tensorflow cpu:
+pip install tensorflow==1.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+2019.7.11
+待实现：具体查看微信收藏的文章
+单位根检验：
+ADF test (Augmented Dickey Fuller test)  常用
+KPSS Test 
+PP Test
+
+2019.7.12
+学习最小二乘法的矩阵形式（多元线性回归）
+因子到资产的映射？
+
+待实现：具体查看微信收藏的文章，参考时间序列分析的书（ebook）
+单位根检验：
+ADF test (Augmented Dickey Fuller test)  常用
+KPSS Test 
+PP Test
+
+2019.7.18
+刷 Leetcode
+git 学习
+ShadowSocks搭建
+阅读 Sophie's world
+跑 TransE代码
+讨论 AA & FA
+
