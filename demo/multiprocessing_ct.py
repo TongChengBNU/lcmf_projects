@@ -18,7 +18,7 @@ def monitor(pool):
     return
 
 # Initialize and start a batch of processes, return a list of Process object
-def multiprocess_main(num_process=5, target_function, names_list=None: List, args_list: List):
+def multiprocess_main(target_function, args_list, num_process=5, names_list=None):
     if names_list is None:
         names_list = ['p'+str(i) for i in range(num_process)]
     pool = [multiprocessing.Process(target = target_function, name=process_name) for _, process_name in zip(range(num_process),names_list)]
@@ -29,4 +29,7 @@ def multiprocess_main(num_process=5, target_function, names_list=None: List, arg
     return pool
 
 
-
+def StrongTest():
+    args_list = [('Tong', 'Cheng'), ('Michael', 'Jordan')]
+    pool = multiprocess_main(num_process=2, target_function=hello, args_list=args_list)
+    return pool
