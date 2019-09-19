@@ -25,6 +25,10 @@ class dog1(animal):
         print(self.bark)
         return
 
+    def __bark(self):
+        print("Private", self.bark)
+        return
+
 
 class dog2(dog1):
 
@@ -43,7 +47,7 @@ ins2 = dog2()
 
 
 # Demo 2: 多重继承中超类方法的特性 -- 自顶而下，不重复
-# 注意超类方法初始化的顺序与继承时传入参数的顺序有关
+# 注意超类方法初始化的顺序与继承时传入参数的顺序有关 -- 倒序
 class A(object):
     def __init__(self, a):
         print('init A...')
