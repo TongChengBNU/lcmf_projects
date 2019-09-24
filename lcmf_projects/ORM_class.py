@@ -23,4 +23,5 @@ class rongan_report(Base):
     S_MV_TO_NAV = Column(Float, default=None)
     S_NEXT_PERIOD = Column(Float, default=None)
     S_NET_ASSET = Column(Float, default=None)
+    S_COMMENT = Column(String, default=None)
 
