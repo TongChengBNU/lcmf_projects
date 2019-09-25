@@ -55,6 +55,7 @@ def format_df(df_metadata: pd.DataFrame, show = False) -> pd.DataFrame:
         logging.warning("Error in date: " + str(df_day.iloc[0, 1])) 
 
     df_standard.drop_duplicates(subset=['S_INFO_WINDCODE'], keep='first', inplace=True)
+    df_standard.fillna(value=None, inplace=True)
     if show:
         print("-----------------------------------------------\n")
         print(df_standard)
@@ -82,6 +83,7 @@ def format_df_name(name: str, show = False) -> pd.DataFrame:
         logging.warning("Error in date: " + str(df_day.iloc[0, 1])) 
 
     df_standard.drop_duplicates(subset=['S_INFO_WINDCODE'], keep='first', inplace=True)
+    df_standard.fillna(value=None, inplace=True)
     if show:
         print("-----------------------------------------------\n")
         print(df_standard)
