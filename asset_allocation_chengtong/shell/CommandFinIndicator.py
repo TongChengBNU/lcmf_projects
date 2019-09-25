@@ -342,6 +342,7 @@ def jp_huobi_update(ctx):
 
     query = session.query(asset_allocate.jp_huobi)
     query.delete()
+    session.commit()
     print("成功删除全部数据;")
 
     for count, index in enumerate(dfCore.index):

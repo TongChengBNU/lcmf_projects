@@ -14,7 +14,7 @@ class rongan_report(Base):
 
     __tablename__ = 'rongan_report'
 
-    TRADE_DT = Column(Date, default=None)
+    TRADE_DT = Column(Date, default=None, primary_key=True)
     S_INFO_WINDCODE = Column(String, default=None, primary_key=True)
     S_INFO_WINDNAME = Column(String, default=None)
     S_INFO_POSITION = Column(Float, default=None)

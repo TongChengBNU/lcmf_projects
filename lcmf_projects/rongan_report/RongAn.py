@@ -7,8 +7,10 @@ import logging
 logging.basicConfig(filename='RongAn.log', level=logging.WARNING, format="%(asctime)s %(message)s")
 
 import pandas as pd
+import numpy as np
 import database
 from ORM_class import rongan_report
+from sqlalchemy.orm import sessionmaker
 
 
 logger = logging.getLogger(__name__)
@@ -52,6 +54,7 @@ def format_df(df_metadata: pd.DataFrame, show = False) -> pd.DataFrame:
     except IndexError:
         logging.warning("Error in date: " + str(df_day.iloc[0, 1])) 
 
+    df_standard.drop_duplicates(subset=['S_INFO_WINDCODE'], keep='first', inplace=True)
     if show:
         print("-----------------------------------------------\n")
         print(df_standard)
@@ -78,6 +81,7 @@ def format_df_name(name: str, show = False) -> pd.DataFrame:
     except IndexError:
         logging.warning("Error in date: " + str(df_day.iloc[0, 1])) 
 
+    df_standard.drop_duplicates(subset=['S_INFO_WINDCODE'], keep='first', inplace=True)
     if show:
         print("-----------------------------------------------\n")
         print(df_standard)
@@ -96,6 +100,88 @@ def query(num):
     print("File name: " + name + "\n")
     print(df_standard_dict[name])
     return
+
+
+engine = database.connection(key = 'asset_allocation')
+Session = sessionmaker(bind = engine)
+
+
+session = Session()
+query = session.query(rongan_report)
+query.delete()
+session.commit()
+print("成功清除数据;")
+session.close()
+
+
+def insert(df_metadata: pd.DataFrame, quiet = True) -> bool:
+    session = Session()
+    for i, series in df_metadata.iterrows():
+        tmp = tuple(map(lambda x: x if not str(x) == 'nan' else None,  series.values ))
+        ins = rongan_report(
+            TRADE_DT = tmp[0], 
+            S_INFO_WINDCODE = tmp[1], 
+            S_INFO_WINDNAME = tmp[2],
+            S_INFO_POSITION = tmp[3],
+            S_INFO_COST = tmp[4],
+            S_VAL_MV = tmp[5],
+            S_MV_TO_NAV = tmp[6],
+            S_NEXT_PERIOD = tmp[7],
+            S_NET_ASSET = tmp[8],
+            S_COMMENT = tmp[9] 
+        )
+        session.add(ins)
+        session.commit()
+    if not quiet:
+        print("表插入完成，共 %d 条数据;" % len(df_metadata))
+    return True
+
+def insert_name(name: str, quiet = True) -> bool:
+    session = Session()
+    for i, series in df_metadata.iterrows():
+        tmp = tuple(map(lambda x: x if not str(x) == 'nan' else None,  series.values ))
+        ins = rongan_report(
+            TRADE_DT = tmp[0], 
+            S_INFO_WINDCODE = tmp[1], 
+            S_INFO_WINDNAME = tmp[2],
+            S_INFO_POSITION = tmp[3],
+            S_INFO_COST = tmp[4],
+            S_VAL_MV = tmp[5],
+            S_MV_TO_NAV = tmp[6],
+            S_NEXT_PERIOD = tmp[7],
+            S_NET_ASSET = tmp[8],
+            S_COMMENT = tmp[9] 
+        )
+        session.add(ins)
+        session.commit()
+    if not quiet:
+        print("%s 表插入完成，共 %d 条数据;" % (name, len(df_metadata)) )
+        
+    return True
+
+if __name__ == '__main__':
+    for name in name_list:
+        try:
+            ret = insert(df_standard_dict[name], quiet=False)
+            if not ret:
+                logging.warning("Error in %s;" % name)
+        except:
+            logging.warning("Error in %s;" % name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
